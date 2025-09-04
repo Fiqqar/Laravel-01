@@ -1,4 +1,5 @@
 <x-layout title="Contact">
+    <x-slot:judul>{{$title}}</x-slot:judul>
     <h1 class="mb-3 font-bold">My Contact</h1>
     <hr class="mb-5"
 

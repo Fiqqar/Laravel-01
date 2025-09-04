@@ -7,6 +7,26 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/home', [ProfileController::class, 'index']);
-Route::get('/profile', [ProfileController::class, 'profile']);
-Route::get('/contact', [ProfileController::class, 'contact']);
+
+Route::get('/home', function () {
+    return view('home', [
+        'title' => 'Home'
+    ]);
+});
+Route::get('/profile', function () {
+    return view('profile', [
+        'title' => 'Profile',
+        
+    ]);
+});
+Route::get('/contact', function () {
+    return view('contact', [
+        'title' => 'Contact'
+    ]);
+});
+Route::get('/student', function () {
+    return view('student', [
+        'title' => 'Student'
+    ]);
+});
+

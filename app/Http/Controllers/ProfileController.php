@@ -13,17 +13,11 @@ class ProfileController extends Controller
 
     public function profile()
     {
-        $data = [
-            'name' => 'Zulfiqar Silmy Setiawan',
-            'class' => 'XI PPLG 2',
-            'major' => 'PPLG'
-        ];
-        return view('profile', $data);
+        return view('profile');
     }
 
     public function contact()
     {
         return view('contact');
     }
-
 }

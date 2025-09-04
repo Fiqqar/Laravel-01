@@ -9,21 +9,11 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
+                            <x-nav-link href="/home" :active="request()->is(patterns: 'home')">Home</x-nav-link>
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                            <a href="/home"
-                                class="{{ request()->is('home') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
-                                Home
-                            </a>
-
-                            <a href="/profile"
-                                class="{{ request()->is('profile') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
-                                Profile
-                            </a>
-
-                            <a href="/contact"
-                                class="{{ request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white' }} rounded-md px-3 py-2 text-sm font-medium">
-                                Contact
-                            </a>
+                            <x-nav-link href="/profile" :active="request()->is(patterns: 'profile')">Profile</x-nav-link>
+                            <x-nav-link href="/contact" :active="request()->is(patterns: 'contact')">Contact</x-nav-link>
+                            <x-nav-link href="/student" :active="request()->is(patterns: 'student')">Student</x-nav-link>
                         </div>
                     </div>
                 </div>
@@ -89,12 +79,10 @@
         <el-disclosure id="mobile-menu" hidden class="block md:hidden">
             <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-                <a href="/home" aria-current="page"
-                    class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">Home</a>
-                <a href="/profile"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Profile</a>
-                <a href="/contact"
-                    class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact</a>
+                <x-nav-link-mobile href="/home" :active="request()->is(patterns: 'home')">Home</x-nav-link-mobile>
+                <x-nav-link-mobile href="/profile" :active="request()->is(patterns: 'profile')">Profile</x-nav-link-mobile>
+                <x-nav-link-mobile href="/contact" :active="request()->is(patterns: 'contact')">Contact</x-nav-link-mobile>
+                <x-nav-link-mobile href="/student" :active="request()->is(patterns: 'student')">Student</x-nav-link-mobile>
             </div>
             <div class="border-t border-white/10 pt-4 pb-3">
                 <div class="flex items-center px-5">
