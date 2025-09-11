@@ -1,48 +1,26 @@
 <x-layout>
     <x-slot:judul>{{$title}}</x-slot:judul>
-    <h1 class="mb-3 font-bold">Student Page</h1>
+    <h1 class="mb-4 font-bold text-3xl text-black">Student Page</h1>
 
-    <div class="overflow-x-auto mt-4">
-        <table class="table-auto w-full border-collapse border border-gray-300 min-w-max">
+    <div class="overflow-x-auto mt-6 rounded-lg shadow-lg bg-white">
+        <table class="table-auto w-full border-collapse min-w-max">
             <thead>
-                <tr class="bg-gray-100">
-                    <th class="border px-4 py-2">No</th>
-                    <th class="border px-4 py-2">Name</th>
-                    <th class="border px-4 py-2">Email</th>
-                    <th class="border px-4 py-2">Address</th>
+                <tr class="bg-gradient-to-r from-blue-100 to-blue-300 text-blue-900">
+                    <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">No</th>
+                    <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Name</th>
+                    <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Email</th>
+                    <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Address</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="border px-4 py-2">1</td>
-                    <td class="border px-4 py-2">Budi Pekerti</td>
-                    <td class="border px-4 py-2">budianakbaik@gmail.com</td>
-                    <td class="border px-4 py-2">Jl. Jupiter 03</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">2</td>
-                    <td class="border px-4 py-2">Ali Pertigaan</td>
-                    <td class="border px-4 py-2">delealli@gmail.com</td>
-                    <td class="border px-4 py-2">Jl. Liverpool 4321</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">3</td>
-                    <td class="border px-4 py-2">Ahmad Sahroni</td>
-                    <td class="border px-4 py-2">ahmad@@gmail.com</td>
-                    <td class="border px-4 py-2">Jl. Rumah Dijarah</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">4</td>
-                    <td class="border px-4 py-2">Mie Ayam</td>
-                    <td class="border px-4 py-2">mieayamenak@gmail.com</td>
-                    <td class="border px-4 py-2">Jl. makanan enak 123</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">5</td>
-                    <td class="border px-4 py-2">Blender</td>
-                    <td class="border px-4 py-2">Blender3d@gmail.com</td>
-                    <td class="border px-4 py-2">Jl. maju mundur 321</td>
-                </tr>
+                @foreach($students as $student)
+                    <tr class="hover:bg-blue-50 transition">
+                        <td class="border-t px-6 py-4">{{ $loop->iteration }}</td>
+                        <td class="border-t px-6 py-4">{{ $student['name'] }}</td>
+                        <td class="border-t px-6 py-4">{{ $student['email'] }}</td>
+                        <td class="border-t px-6 py-4">{{ $student['address'] }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

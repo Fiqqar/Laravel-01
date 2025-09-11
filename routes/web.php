@@ -1,32 +1,16 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
 
-Route::get('/home', function () {
-    return view('home', [
-        'title' => 'Home'
-    ]);
-});
-Route::get('/profile', function () {
-    return view('profile', [
-        'title' => 'Profile',
-        
-    ]);
-});
-Route::get('/contact', function () {
-    return view('contact', [
-        'title' => 'Contact'
-    ]);
-});
-Route::get('/student', function () {
-    return view('student', [
-        'title' => 'Student'
-    ]);
-});
-
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/student', [StudentController::class, 'index']);
