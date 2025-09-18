@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
@@ -11,14 +12,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-
-        $students = [
-            ['id' => 1, 'name' => 'Budi Pekerti', 'email' => 'budianakbaik@gmail.com', 'address' => 'Jl. merdeka no 123'],
-            ['id' => 2, 'name' => 'Ali Pertigaan', 'email' => 'delealli@gmail.com', 'address' => 'Jl. pahlawan no 456'],
-            ['id' => 3, 'name' => '	Ahmad Sahroni', 'email' => 'ahmads@gmail.com', 'address' => 'Jl. kartini no 789'],
-            ['id' => 4, 'name' => 'Mie Ayam', 'email' => 'mieayamenak@gmail.com', 'address' => 'Jl. enak no 012'],
-            ['id' => 5, 'name' => 'Blender', 'email' => 'blender321@gmail.com', 'address' => 'Jl. dapur no 345']
-        ];
+        $students = Student::all();
 
         return view('student', [
             'title' => 'Student',
