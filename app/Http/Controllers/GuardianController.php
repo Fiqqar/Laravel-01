@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guardian;
 use Illuminate\Http\Request;
-use App\Models\Student;
 
-class StudentController extends Controller
+class GuardianController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $students = Student::all();
+        $guardian = Guardian::all();
 
-        return view('student', [
-            'title' => 'Students',
-            'students' => $students
+        return view('guardian', [
+            'title' => 'Guardian',
+            'guardian' => $guardian 
         ]);
     }
 
@@ -39,7 +39,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Guardian $guardian)
     {
         //
     }
@@ -47,7 +47,7 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Guardian $guardian)
     {
         //
     }
@@ -55,7 +55,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Guardian $guardian)
     {
         //
     }
@@ -63,7 +63,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Guardian $guardian)
     {
         //
     }
