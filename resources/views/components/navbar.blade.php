@@ -84,6 +84,7 @@
                 <x-nav-link-mobile href="/profile" :active="request()->is(patterns: 'profile')">Profile</x-nav-link-mobile>
                 <x-nav-link-mobile href="/contact" :active="request()->is(patterns: 'contact')">Contact</x-nav-link-mobile>
                 <x-nav-link-mobile href="/student" :active="request()->is(patterns: 'student')">Student</x-nav-link-mobile>
+                <x-nav-link href="/guardian" :active="request()->is('guardian')">Guardian</x-nav-link>
             </div>
             <div class="border-t border-white/10 pt-4 pb-3">
                 <div class="flex items-center px-5">
