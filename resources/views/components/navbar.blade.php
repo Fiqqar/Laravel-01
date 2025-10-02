@@ -15,6 +15,7 @@
                             <x-nav-link href="/contact" :active="request()->is(patterns: 'contact')">Contact</x-nav-link>
                             <x-nav-link href="/student" :active="request()->is(patterns: 'student')">Student</x-nav-link>
                             <x-nav-link href="/guardian" :active="request()->is('guardian')">Guardian</x-nav-link>
+                            <x-nav-link href="/classroom" :active="request()->is('classroom')">Classroom</x-nav-link>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,8 @@
                 <x-nav-link-mobile href="/profile" :active="request()->is(patterns: 'profile')">Profile</x-nav-link-mobile>
                 <x-nav-link-mobile href="/contact" :active="request()->is(patterns: 'contact')">Contact</x-nav-link-mobile>
                 <x-nav-link-mobile href="/student" :active="request()->is(patterns: 'student')">Student</x-nav-link-mobile>
-                <x-nav-link href="/guardian" :active="request()->is('guardian')">Guardian</x-nav-link>
+                <x-nav-link-mobile href="/guardian" :active="request()->is('guardian')">Guardian</x-nav-link-mobile>
+                <x-nav-link-mobile href="/classroom" :active="request()->is('classroom')">Classroom</x-nav-link-mobile>
             </div>
             <div class="border-t border-white/10 pt-4 pb-3">
                 <div class="flex items-center px-5">

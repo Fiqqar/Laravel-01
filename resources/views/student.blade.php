@@ -11,7 +11,7 @@
                     <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Gender</th>
                     <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Email</th>
                     <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Birthdate</th>
-                    <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Class</th>
+                    <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Classroom</th>
                     <th class="border-b-2 border-blue-300 px-6 py-3 text-left font-semibold">Address</th>
                 </tr>
             </thead>
@@ -19,12 +19,12 @@
                 @foreach($students as $student)
                     <tr class="hover:bg-blue-50 transition">
                         <td class="border-t px-6 py-4">{{ $loop->iteration }}</td>
-                        <td class="border-t px-6 py-4">{{ $student['name'] }}</td>
-                        <td class="border-t px-6 py-4">{{ $student['gender'] }}</td>
-                        <td class="border-t px-6 py-4">{{ $student['email'] }}</td>
-                        <td class="border-t px-6 py-4">{{ $student['birthdate'] }}</td>
-                        <td class="border-t px-6 py-4">{{ $student['grade'] }}</td>
-                        <td class="border-t px-6 py-4">{{ $student['address'] }}</td>
+                        <td class="border-t px-6 py-4">{{ $student->name }}</td>
+                        <td class="border-t px-6 py-4">{{ $student->gender }}</td>
+                        <td class="border-t px-6 py-4">{{ $student->email }}</td>
+                        <td class="border-t px-6 py-4">{{ $student->birthdate }}</td>
+                        <td class="border-t px-6 py-4">{{ $student->classroom->name }}</td>
+                        <td class="border-t px-6 py-4">{{ $student->address }}</td>
                     </tr>
                 @endforeach
             </tbody>

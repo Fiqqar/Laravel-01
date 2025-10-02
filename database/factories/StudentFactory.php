@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Classroom;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,14 +19,14 @@ class StudentFactory extends Factory
     {
         $gender = $this->faker->randomElement(['Laki-laki', 'Perempuan']);
         return [
-            'name' => $gender == 'Laki-laki' 
-                    ? $this->faker->firstNameMale()
-                    : $this->faker->firstNameFemale(),
+            'name' => $gender == 'Laki-laki'
+                ? $this->faker->firstNameMale()
+                : $this->faker->firstNameFemale(),
             'gender' => $gender,
             'email' => $this->faker->unique()->safeEmail(),
             'birthdate' => $this->faker->date(),
-            'grade' => $this->faker->randomElement(array: ['10 PPLG 2', '10 PPLG 1', '10 PPLG 3', '11 PPLG 1', '11 PPLG 2']),
-            'address' => $this->faker->address(), 
+            'classroom_id' => Classroom::factory(),
+            'address' => $this->faker->address(),
         ];
     }
 }
