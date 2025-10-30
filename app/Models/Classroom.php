@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
+    protected $fillable = ['name'];
     /** @use HasFactory<\Database\Factories\ClassroomFactory> */
     use HasFactory;
 

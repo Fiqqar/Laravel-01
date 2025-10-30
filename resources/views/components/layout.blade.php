@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="id" class="h-full bg-gray-100">
 
