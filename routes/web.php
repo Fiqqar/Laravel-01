@@ -30,7 +30,7 @@ Route::get('/teacher', [TeacherController::class, 'index']);
 Route::get('/subject', [SubjectController::class, 'index']);
 Route::get('/dashboard', [AdminDashboardController::class, 'index']);
 Route::resource('/dashboard/classroom', AdminClassroomController::class);
-Route::get('/dashboard/guardian', [AdminGuardianController::class, 'index']);
+Route::resource('/dashboard/guardian', AdminGuardianController::class);
 Route::get('/dashboard/student', [AdminStudentController::class, 'index']);
 Route::get('/dashboard/teacher', [AdminTeacherController::class, 'index']);
 Route::get('/dashboard/subject', [AdminSubjectController::class, 'index']);

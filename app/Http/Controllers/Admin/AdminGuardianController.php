@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guardian;
 use Illuminate\Http\Request;
 
 class AdminGuardianController extends Controller
@@ -12,8 +13,11 @@ class AdminGuardianController extends Controller
      */
     public function index()
     {
+        $guardian = Guardian::all();
+
         return view('admin.guardians', [
-            'title' => 'Guardian'
+            'title' => 'Guardian',
+            'guardian' => $guardian
         ]);
     }
 
@@ -30,7 +34,23 @@ class AdminGuardianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'job' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'address' => 'required|string|max:500'
+        ]);
+
+        Guardian::create([
+            'name' => $validated['name'],
+            'job' => $validated['job'],
+            'phone' => $validated['phone'],
+            'email' => $validated['email'],
+            'address' => $validated['address']
+        ]);
+
+        return redirect('/dashboard/guardian')->with('success', 'Guardian berhasil ditambahkan!');
     }
 
     /**
@@ -54,7 +74,24 @@ class AdminGuardianController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'job' => 'required|string|max:255',
+            'phone' => 'required|string|max:50',
+            'email' => 'required|string|max:255',
+            'address' => 'required|string|max:500'
+        ]);
+
+        $guardian = Guardian::findOrFail($id);
+        $guardian->update([
+            'name' => $validated['name'],
+            'job' => $validated['job'],
+            'phone' => $validated['phone'],
+            'email' => $validated['email'],
+            'address' => $validated['address']
+        ]);
+
+        return redirect('/dashboard/guardian')->with('success', 'Guardian berhasil diupdate!');
     }
 
     /**
@@ -62,6 +99,10 @@ class AdminGuardianController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $guardian = Guardian::findOrFail($id);
+
+        $guardian->delete();
+
+        return redirect('/dashboard/guardian')->with('success', 'Guardian berhasil dihapus!');
     }
 }

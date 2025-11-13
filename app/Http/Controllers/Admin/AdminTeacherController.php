@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class AdminTeacherController extends Controller
@@ -12,8 +13,10 @@ class AdminTeacherController extends Controller
      */
     public function index()
     {
+        $teacher = Teacher::all();
         return view('admin.teachers', [
-            'title' => 'Teacher'
+            'title' => 'Teacher',
+            'teacher' => $teacher
         ]);
     }
 

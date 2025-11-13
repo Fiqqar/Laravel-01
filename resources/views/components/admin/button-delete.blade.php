@@ -1,4 +1,4 @@
-<form action="{{ $action }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this classroom?')" class="inline">
+<form action="{{ $action }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this data?')" class="inline">
     @csrf
     @method('DELETE')
     <button type="submit" class="text-red-400 hover:text-red-300 transition-colors duration-200">

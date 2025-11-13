@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class AdminSubjectController extends Controller
@@ -12,8 +13,10 @@ class AdminSubjectController extends Controller
      */
     public function index()
     {
+        $subjects = Subject::all();
         return view('admin.subjects', [
-            'title' => 'Subject'
+            'title' => 'Subject',
+            'subjects' => $subjects
         ]);
     }
 

@@ -62,22 +62,14 @@
 
     @foreach($classroom as $c)
         <x-admin.modal-update id="editModal-{{ $c->id }}" action="/dashboard/classroom/{{ $c->id }}">
-            <form method="POST">
-                @csrf
-                @method('PUT')
-                <div class="mb-4">
-                    <label for="edit_name_{{ $c->id }}"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Classroom Name
-                    </label>
-                    <input type="text" name="name" id="edit_name_{{ $c->id }}" value="{{ $c->name }}"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                        required>
-                </div>
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                    Update Classroom
-                </button>
-            </form>
+            <div class="mb-4">
+                <label for="edit_name_{{ $c->id }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Classroom Name
+                </label>
+                <input type="text" name="name" id="edit_name_{{ $c->id }}" value="{{ $c->name }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    required>
+            </div>
         </x-admin.modal-update>
     @endforeach
 </x-admin.layout>
