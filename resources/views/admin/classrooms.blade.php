@@ -40,8 +40,6 @@
                                 class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <x-admin.button-update data-modal-target="editModal-{{ $c->id }}"
                                     data-modal-toggle="editModal-{{ $c->id }}" />
-
-                                <x-admin.button-delete action="/dashboard/classroom/{{ $c->id }}" />
                             </div>
                         </td>
                     </tr>

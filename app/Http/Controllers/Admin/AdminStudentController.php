@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,12 @@ class AdminStudentController extends Controller
     public function index()
     {
         $students = Student::all();
+        $classroom = Classroom::all();
 
         return view('admin.students', [
             'title' => 'Students',
-            'students' => $students
+            'students' => $students,
+            'classroom' => $classroom
         ]);
     }
 
@@ -34,7 +37,17 @@ class AdminStudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'gender' => 'required|string|in:Male,Female',
+            'email' => 'required|email|max:255',
+            'birthdate' => 'required|date',
+            'address' => 'required|string|max:500',
+            'classroom_id' => 'required|exists:classrooms,id'
+        ]);
+
+        Student::create($validated);
+        return redirect('/dashboard/student')->with('success', 'Student berhasil ditambahkan!');
     }
 
     /**
@@ -58,7 +71,18 @@ class AdminStudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'gender' => 'required|string|in:Male,Female',
+            'email' => 'required|email|max:255',
+            'birthdate' => 'required|date',
+            'address' => 'required|string|max:500',
+            'classroom_id' => 'required|exists:classrooms,id'
+        ]);
+
+        $student = Student::findOrFail($id);
+        $student->update($validated);
+        return redirect('/dashboard/student')->with('success', 'Student berhasil diupdate!');
     }
 
     /**
@@ -66,6 +90,8 @@ class AdminStudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $student->delete();
+        return redirect('/dashboard/student')->with('success', 'Student berhasil dihapus!');
     }
 }

@@ -33,7 +33,12 @@ class AdminSubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000'
+        ]);
+        Subject::create($validated);
+        return redirect('/dashboard/subject')->with('success', 'Subject berhasil ditambahkan!');
     }
 
     /**
@@ -57,7 +62,13 @@ class AdminSubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000'
+        ]);
+        $subject = Subject::findOrFail($id);
+        $subject->update($validated);
+        return redirect('/dashboard/subject')->with('success', 'Subject berhasil diperbarui!');
     }
 
     /**

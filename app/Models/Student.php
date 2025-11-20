@@ -11,7 +11,7 @@ class Student extends Model
     use HasFactory;
 
     protected $with = ['classroom'];
-
+    protected $fillable = ['name', 'gender', 'email', 'birthdate', 'classroom_id', 'address'];
     public function classroom()
     {
         return $this->belongsTo(Classroom::class, 'classroom_id');

@@ -42,13 +42,7 @@ class AdminGuardianController extends Controller
             'address' => 'required|string|max:500'
         ]);
 
-        Guardian::create([
-            'name' => $validated['name'],
-            'job' => $validated['job'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'address' => $validated['address']
-        ]);
+        Guardian::create($validated);
 
         return redirect('/dashboard/guardian')->with('success', 'Guardian berhasil ditambahkan!');
     }
@@ -83,13 +77,7 @@ class AdminGuardianController extends Controller
         ]);
 
         $guardian = Guardian::findOrFail($id);
-        $guardian->update([
-            'name' => $validated['name'],
-            'job' => $validated['job'],
-            'phone' => $validated['phone'],
-            'email' => $validated['email'],
-            'address' => $validated['address']
-        ]);
+        $guardian->update($validated);
 
         return redirect('/dashboard/guardian')->with('success', 'Guardian berhasil diupdate!');
     }

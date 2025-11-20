@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Classroom;
+use App\Models\Guardian;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -12,8 +17,19 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
+        $totalclassroom = Classroom::count();
+        $totalteacher = Teacher::count();
+        $totalstudent = Student::count();
+        $totalsubject = Subject::count();
+        $totalguardian = Guardian::count();
         return view('admin.dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'totalclassroom' => $totalclassroom,
+            'totalteacher' => $totalteacher,
+            'totalstudent' => $totalstudent,
+            'totalsubject' => $totalsubject,
+            'totalguardian' => $totalguardian
+
         ]);
     }
 

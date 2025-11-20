@@ -37,9 +37,7 @@ class AdminClassroomController extends Controller
             'name' => 'required|string|max:255'
         ]);
 
-        Classroom::create([
-            'name' => $validated['name']
-        ]);
+        Classroom::create($validated);
 
         return redirect('/dashboard/classroom')->with('success', 'Classroom berhasil ditambahkan!');
     }
@@ -70,9 +68,7 @@ class AdminClassroomController extends Controller
         ]);
 
         $classroom = Classroom::findOrFail($id);
-        $classroom->update([
-            'name' => $validated['name']
-        ]);
+        $classroom->update($validated);
 
         return redirect('/dashboard/classroom')->with('success', 'Classroom berhasil diupdate!');
     }
@@ -82,10 +78,6 @@ class AdminClassroomController extends Controller
      */
     public function destroy(string $id)
     {
-        $classroom = Classroom::findOrFail($id);
-
-        $classroom->delete();
-
-        return redirect('/dashboard/classroom')->with('success', 'Classroom berhasil dihapus!');
+        //
     }
 }

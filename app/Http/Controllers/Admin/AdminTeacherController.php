@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,14 @@ class AdminTeacherController extends Controller
     public function index()
     {
         $teacher = Teacher::all();
+        $subjects = Subject::all();
         return view('admin.teachers', [
             'title' => 'Teacher',
-            'teacher' => $teacher
+            'teacher' => $teacher,
+            'subjects' => $subjects
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +37,15 @@ class AdminTeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'subject_id' => 'required|exists:subjects,id',
+            'phone' => 'required|string|max:50',
+            'address' => 'required|string|max:500'
+        ]);
+
+        Teacher::create($validated);
+        return redirect('/dashboard/teacher')->with('success', 'Teacher berhasil ditambahkan!');
     }
 
     /**
@@ -57,7 +69,16 @@ class AdminTeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'subject_id' => 'required|exists:subjects,id',
+            'phone' => 'required|string|max:50',
+            'address' => 'required|string|max:500'
+        ]);
+
+        $teacher = Teacher::findOrFail($id);
+        $teacher->update($validated);
+        return redirect('/dashboard/teacher')->with('success', 'Teacher berhasil diupdate!');
     }
 
     /**
@@ -65,6 +86,8 @@ class AdminTeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $teacher = Teacher::findOrFail($id);
+        $teacher->delete();
+        return redirect('/dashboard/teacher')->with('success', 'Teacher berhasil dihapus!');
     }
 }
