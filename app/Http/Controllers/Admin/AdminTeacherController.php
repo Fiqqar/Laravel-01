@@ -12,17 +12,27 @@ class AdminTeacherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $teacher = Teacher::all();
+        $teacher = Teacher::with('subject')
+            ->when($request->search, function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('phone', 'like', '%' . $request->search . '%')
+                    ->orWhereHas('subject', function ($s) use ($request) {
+                        $s->where('name', 'like', '%' . $request->search . '%');
+                    });
+            })
+            ->paginate(10)
+            ->withQueryString();
+
         $subjects = Subject::all();
+
         return view('admin.teachers', [
             'title' => 'Teacher',
             'teacher' => $teacher,
             'subjects' => $subjects
         ]);
     }
-
 
     /**
      * Show the form for creating a new resource.

@@ -11,14 +11,21 @@ class AdminSubjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subjects = Subject::all();
+        $subjects = Subject::when($request->search, function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->search . '%');
+        })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
         return view('admin.subjects', [
             'title' => 'Subject',
             'subjects' => $subjects
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
