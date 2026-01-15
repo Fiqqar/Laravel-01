@@ -22,7 +22,8 @@
                 </button>
                 <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
                     <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Admin Panel</span>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Admin
+                        Panel</span>
                 </a>
                 <form action="#" method="GET" class="hidden md:block md:pl-2">
                     <label for="topbar-search" class="sr-only">Search</label>
@@ -350,7 +351,7 @@
                                 Billing
                             </div>
                         </a>
-                        <a href="#"
+                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                             class="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 group">
                             <svg aria-hidden="true"
                                 class="mx-auto mb-1 w-7 h-7 text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-400"
@@ -440,12 +441,17 @@
                     <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
                         <li>
                             <a href="#"
-                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                                out</a>
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                Sign out
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+            @csrf
+        </form>
     </nav>
 </div>
