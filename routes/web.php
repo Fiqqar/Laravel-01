@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\ClassroomController;
@@ -17,10 +16,17 @@ use App\Http\Controllers\Admin\AdminStudentController;
 use App\Http\Controllers\Admin\AdminTeacherController;
 use App\Http\Controllers\Admin\AdminSubjectController;
 
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 });
+
+Route::get('/student', [StudentController::class, 'index']);
+Route::resource('/guardian', GuardianController::class);
+Route::resource('/classroom', ClassroomController::class);
+Route::get('/teacher', [TeacherController::class, 'index']);
+Route::get('/subject', [SubjectController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
 
@@ -30,16 +36,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [HomeController::class, 'profile']);
     Route::get('/contact', [HomeController::class, 'contact']);
 
-    Route::get('/student', [StudentController::class, 'index']);
-    Route::resource('/guardian', GuardianController::class);
-    Route::resource('/classroom', ClassroomController::class);
-    Route::get('/teacher', [TeacherController::class, 'index']);
-    Route::get('/subject', [SubjectController::class, 'index']);
+});
+Route::middleware(['admin'])->group(function () {
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+
     Route::resource('/dashboard/classroom', AdminClassroomController::class);
     Route::resource('/dashboard/guardian', AdminGuardianController::class);
     Route::resource('/dashboard/student', AdminStudentController::class);
     Route::resource('/dashboard/teacher', AdminTeacherController::class);
     Route::resource('/dashboard/subject', AdminSubjectController::class);
+
 });
